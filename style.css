@@ -29,6 +29,12 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
 p {
   margin-bottom: 1.5rem;
 }
