@@ -10,10 +10,10 @@
 const SVG_NS = "http://www.w3.org/2000/svg";
 
 const LINKS = [
-  { label: "LinkedIn", href: "#" },
-  { label: "GitHub", href: "#" },
-  { label: "Resume", href: "#" },
-  { label: "Email", href: "#" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/callen-nash/" },
+  { label: "GitHub", href: "https://github.com/cnash03" },
+  { label: "Resume", href: "#" }, // TODO: point this at your resume once it's updated
+  { label: "Email", href: "mailto:callen.nash@gmail.com" },
 ];
 
 const MARKERS = [
