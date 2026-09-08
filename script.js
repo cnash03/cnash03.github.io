@@ -12,16 +12,15 @@ const SVG_NS = "http://www.w3.org/2000/svg";
 const LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/callen-nash/" },
   { label: "GitHub", href: "https://github.com/cnash03" },
-  { label: "Resume", href: "#" }, // TODO: point this at your resume once it's updated
+  { label: "Resume", href: "resume.pdf" },
   { label: "Email", href: "mailto:callen.nash@gmail.com" },
 ];
 
 const MARKERS = [
   { frac: 0, label: "0 / 400m" },
-  { frac: 0.2, label: "100m" },
-  { frac: 0.4, label: "200m" },
-  { frac: 0.6, label: "300m" },
-  { frac: 0.8, label: "400m" },
+  { frac: 0.25, label: "100m" },
+  { frac: 0.5, label: "200m" },
+  { frac: 0.75, label: "300m" },
 ];
 
 const PROJECTS = [
