@@ -45,9 +45,9 @@ a:hover {
 .page {
   display: flex;
   gap: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 48px 24px 120px;
+  width: 100%;
+  margin: 0;
+  padding: 48px clamp(24px, 5vw, 96px) 120px;
   align-items: flex-start;
   background: linear-gradient(
     to bottom,
