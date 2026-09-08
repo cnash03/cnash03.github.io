@@ -1,0 +1,3 @@
+-Write as minimal code as possible to get the job done, watch for repeated patterns, and factor them out into functions or loops.
+-Use HTML, CSS and JavaScript only, and no other languages or frameworks.
+-After implementing a feature, test it in a browser and make sure it works before moving on to the next one.

@@ -1,40 +1,280 @@
-/* A deliberately small starting point.
-   It exists to prove one thing: this file is loading.
-   If you can see spacing and a readable line length, the path in index.html works.
-
-   Delete all of it whenever you want. */
+/* The whole site is one idea: scrolling down the page is running one lap of
+   a 400m track. The aside on the left holds the track; the runner dot's
+   position is set by script.js from how far down the page you've scrolled.
+   A dawn-to-dusk gradient runs the full height of .page, so the color
+   changes as you go, and each section sits on a translucent white card so
+   the text stays readable over it. */
 
 :root {
-  /* Makes the page follow the reader's light or dark mode setting, for free. */
-  color-scheme: light dark;
+  --ink: oklch(0.20 0.02 60);
+  --muted: oklch(0.42 0.02 60);
+  --accent: oklch(0.48 0.18 25);
+  --card: rgba(255, 255, 255, 0.6);
+  --card-solid: oklch(1 0 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, serif;
+}
 
-  /* 65ch caps the line at about 65 characters. Long lines are genuinely hard
-     to read, and this single rule does more for legibility than anything else
-     in this file. */
-  max-width: 65ch;
+h1, h2, h3, .links a, .distance-label, #distance-value, .scroll-hint {
+  font-family: "Space Grotesk", "Helvetica Neue", sans-serif;
+}
 
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* the gradient: dawn (peach) at the top of the page, dusk (gold) at the bottom */
+.page {
+  display: flex;
+  gap: 40px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 48px 24px 120px;
+  align-items: flex-start;
+  background: linear-gradient(
+    to bottom,
+    oklch(0.94 0.035 55),
+    oklch(0.92 0.05 20) 20%,
+    oklch(0.91 0.045 300) 40%,
+    oklch(0.92 0.04 230) 60%,
+    oklch(0.92 0.05 165) 80%,
+    oklch(0.93 0.05 95)
+  );
+}
+
+/* the track */
+
+.track-rail {
+  position: sticky;
+  top: 40px;
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+#track-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.lane-line {
+  fill: none;
+  stroke: oklch(0.75 0.01 60);
+  stroke-width: 1;
+}
+
+#track-path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.marker circle {
+  fill: var(--card-solid);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.marker.near circle {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+
+.marker text {
+  font-size: 9px;
+  text-anchor: middle;
+  fill: var(--muted);
+}
+
+#runner {
+  r: 7;
+  fill: var(--accent);
+  stroke: var(--card-solid);
+  stroke-width: 2;
+  transition: transform 90ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #runner {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.distance-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.distance-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#distance-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.track-caption {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
   line-height: 1.6;
-  font-size: 1.125rem;
+}
+
+/* the lap content */
+
+main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.stop {
+  min-height: 58vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 40px 36px;
+}
+
+.links {
+  display: flex;
+  gap: 18px;
+}
+
+.links a {
+  font-size: 13px;
+  font-weight: 600;
 }
 
 h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  font-size: 38px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 
-h2 {
-  font-size: 1.75rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+.lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 42ch;
 }
 
-p {
-  margin-bottom: 1.5rem;
+.scroll-hint {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0;
+}
+
+.stop p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 56ch;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 15px !important;
+}
+
+.email {
+  margin-top: 24px !important;
+  font-size: 13px !important;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.project-card {
+  background: var(--card-solid);
+  border-radius: 4px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.project-card a {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .page {
+    flex-direction: column;
+  }
+  .track-rail {
+    position: static;
+    width: 100%;
+    top: auto;
+  }
 }
