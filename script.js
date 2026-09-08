@@ -1,11 +1,8 @@
 // Runs the track: draws the distance markers, then keeps the runner dot and
 // the "you are at" readout in sync with how far down the page you've scrolled.
 //
-// Replace the placeholder values below with your real ones before you ship:
-// - LINKS: your LinkedIn, GitHub, resume, and email
-// - PROJECTS: two or three things you've built
-// The bracketed text in index.html ([ONE OR TWO LINES...], [YOUR EMAIL], etc.)
-// is yours to rewrite there directly.
+// LINKS and PROJECTS below are real. The bracketed text still in index.html
+// ([ONE OR TWO LINES...], etc.) is yours to rewrite there directly.
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -23,10 +20,25 @@ const MARKERS = [
   { frac: 0.75, label: "300m" },
 ];
 
+// href is optional: leave it off a project with no public repo or demo to
+// link to, and the card just won't show a "View" link.
 const PROJECTS = [
-  { name: "[Project One]", blurb: "[What it does, what you built it with.]", href: "#" },
-  { name: "[Project Two]", blurb: "[What it does, what you built it with.]", href: "#" },
-  { name: "[Project Three]", blurb: "[What it does, what you built it with.]", href: "#" },
+  {
+    name: "Mines Peer Evaluation Website",
+    blurb: "A full-stack peer evaluation web app, built with a team of four and deployed on AWS. I led UI design and secure login, and ran the project as Scrum Master.",
+  },
+  {
+    name: "Projected Revenue Calculator",
+    blurb: "A revenue visualization tool I built independently, using Firebase pipelines to turn CSV uploads into trend analysis stakeholders could act on.",
+  },
+  {
+    name: "AutoCAD Design Automation Plugins",
+    blurb: "Custom AutoCAD plugins in C#/.NET, used daily by 315 engineers at NEI Electric Power Engineering to automate design processes and tailor tools to their specs.",
+  },
+  {
+    name: "AI-Powered Enterprise Search",
+    blurb: "Built natural language search for Tyler Technologies' flagship Enterprise Resource Platform, using Model Context Protocol (MCP) tools so users query business data with AI instead of manual lookups.",
+  },
 ];
 
 function renderLinks(containerId) {
@@ -41,7 +53,7 @@ function renderProjects() {
     <div class="project-card">
       <h3>${p.name}</h3>
       <p>${p.blurb}</p>
-      <a href="${p.href}">View &rarr;</a>
+      ${p.href ? `<a href="${p.href}">View &rarr;</a>` : ""}
     </div>`
   ).join("");
 }
