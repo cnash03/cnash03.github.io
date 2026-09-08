@@ -1,8 +1,7 @@
 // Runs the track: draws the distance markers, then keeps the runner dot and
 // the "you are at" readout in sync with how far down the page you've scrolled.
 //
-// LINKS and PROJECTS below are real. The bracketed text still in index.html
-// ([ONE OR TWO LINES...], etc.) is yours to rewrite there directly.
+// LINKS and PROJECTS below are real; so is everything in index.html.
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 
